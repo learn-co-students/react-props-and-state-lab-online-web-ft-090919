@@ -15,6 +15,63 @@ class App extends React.Component {
     }
   }
 
+  onAdoptPet = (id) => {
+    // TODO: figure out what the spread operator is
+    // doing here
+    const pets = this.state.pets.map(p => {
+      return p.id === id ? { ...p, isAdopted: true } : p;
+    });
+    this.setState({ pets: pets });
+
+    // let petsToAdopt = this.state.pets.map(pet => {
+    //   if (pet.id === id) {
+    //     pet.isAdopted = true
+    //   }
+    // })
+    // this.setState({Object.assign({},this.state, {
+    //   pets: petsToAdopt
+    // })})
+
+    // petToAdopt.setState({
+    //   isAdopted: true
+    // })
+    // console.log(petToAdopt)
+    // console.log(petToAdopt)
+    // console.log(event.target)
+  }
+
+  onChangeType = (event) => {
+    this.setState({
+      filters: Object.assign({}, this.state.filters, {
+        type: event.target.value
+    })
+  })
+}
+
+  onFindPetsClick = () => {
+    let intermediateArray = []
+    let searchParameter = ''
+
+    if (this.state.filters.type !== 'all') {
+      searchParameter = `?type=${this.state.filters.type.toLowerCase()}`
+    }
+
+    let helperPromise = new Promise((resolve) => {
+      fetch(`/api/pets${searchParameter}`)
+      .then(res => res.json())
+      .then(obj => intermediateArray = obj)
+      .then(resolve)
+    })
+
+    helperPromise
+    .then(() => {
+      this.setState({
+        pets: intermediateArray
+      })
+    })
+  }
+
+
   render() {
     return (
       <div className="ui container">
@@ -24,10 +81,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick} />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet} />
             </div>
           </div>
         </div>
