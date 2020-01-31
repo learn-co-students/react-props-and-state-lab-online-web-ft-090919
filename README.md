@@ -49,7 +49,7 @@ descendants:
 1.  The app's initial state is already defined. App has two children: the
     `<Filters />` and `<PetBrowser />` components.
 
-2. App should pass a **callback** prop, `onChangeType`, to `<Filters />`. This
+2. App should pass a **callback** prop, `onChangetype`, to `<Filters />`. This
    callback needs to update `<App />`'s `state.filters.type`
 
 3. `<Filters />` needs a **callback** prop, `onFindPetsClick`. When the
@@ -78,7 +78,7 @@ descendants:
 
 ### `Filters`
 
-1.  Should receive an `onChangeType` callback prop. This callback prop gets
+1.  Should receive an `onChangetype` callback prop. This callback prop gets
     called whenever the value of the `<select>` element changes with the
     **value** of the `<select>`
 
