@@ -13,9 +13,9 @@ const FILTERS_STATE = {
 
 describe('<Filters />', () => {
   describe('Animal type', () => {
-    it('should call the `onChangeType` prop callback when the animal type select changes', () => {
+    it('should call the `onChangetype` prop callback when the animal type select changes', () => {
       const spy = sinon.spy();
-      const wrapper = shallow(<Filters onChangeType={spy} filters={FILTERS_STATE} />);
+      const wrapper = shallow(<Filters onChangetype={spy} filters={FILTERS_STATE} />);
       wrapper.find('select').simulate('change', { target: { value: 'dog' } });
       expect(spy.calledOnce).to.be.true;
     });

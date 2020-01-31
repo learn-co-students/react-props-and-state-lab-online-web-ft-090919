@@ -18,7 +18,7 @@ describe('<App />', () => {
   describe('Filters', () => {
     it('should change filter type', () => {
       const spy = sinon.spy();
-      const wrapper = shallow(<Filters onChangeType={spy} filters={FILTERS_STATE} />);
+      const wrapper = shallow(<Filters onChangetype={spy} filters={FILTERS_STATE} />);
       wrapper.find('select').simulate('change', { target: { value: 'dog' } });
     });
   });
